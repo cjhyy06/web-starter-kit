@@ -1,0 +1,12 @@
+@import '../../styles/common';
+
+.slide-container {
+  float: left;
+  width: $menu-width;
+  margin-right: -$menu-width;
+
+  .slide-content {
+    background-color: #ddd;
+    min-height: $page-content-min-height;
+  }
+}
