@@ -35,7 +35,7 @@ module.exports = {
     symlinks: false
   },
   module: {
-    noParse: function(content) {
+    noParse: function (content) {
       return /lodash/.test(content)
     },
     rules: [
