@@ -1,18 +1,10 @@
-import webpack from 'webpack'
-import webpackClientConfig from './webpack/client.build'
-
-function build() {
-  return new Promise((resolve, reject) => {
-    webpack(webpackClientConfig, (err, stats) => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve()
-      }
-    })
-  })
+import buildClient from './build-client'
+import buildServer from './build-server'
+async function build () {
+  await buildClient()
+  await buildServer()
+  console.log('both client and server build completed')
 }
-
 export default {
   name: 'build',
   func: build

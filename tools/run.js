@@ -1,4 +1,4 @@
-function run(task, options) {
+function run (task, options) {
   task.default.func('hello')
 }
 if (require.main === module && process.argv.length > 2) {
