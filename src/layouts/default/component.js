@@ -10,7 +10,7 @@ export default {
     'app-content': appContent,
     'app-footer': appFooter
   },
-  mounted() {
+  mounted () {
     let slideEl = $('.slide-content')
     let mainContentEl = $('.content')
     let mainContentHeight = mainContentEl.height()

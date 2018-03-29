@@ -13,7 +13,7 @@ function build() {
   })
 }
 
-export default{
+export default {
   name: 'build',
   func: build
 }

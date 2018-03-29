@@ -1,8 +1,9 @@
 <template>
-<div class="row content-container">
-  <div class="content">
-    content
+  <div class="row content-container">
+    <div class="content">
+      content
+    </div>
+
   </div>
-</div>
 </template>
 <style scoped lang="scss" src="./style.scss"></style>
