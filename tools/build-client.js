@@ -1,28 +1,28 @@
 import webpack from 'webpack'
 import webpackClientConfig from './webpack/client.build'
 process.env.NODE_ENV = 'production'
-const ora = require('ora')
+// const ora = require('ora')
 const rm = require('rimraf')
-const path = require('path')
+// const path = require('path')
 const chalk = require('chalk')
 const config = require('./config')
 
-const spinner = ora('building for client...')
-spinner.start()
+// const spinner = ora('building for client...')
+// spinner.start()
 function buildClient () {
   return new Promise((resolve, reject) => {
-    rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
+    rm(config.build.assetsRoot, err => {
       if (err) throw err
       webpack(webpackClientConfig, (err, stats) => {
-        spinner.stop()
+        // spinner.stop()
         if (err) throw err
-        process.stdout.write(stats.toString({
-          colors: true,
-          modules: false,
-          children: false,
-          chunks: false,
-          chunkModules: false
-        }) + '\n\n')
+        // process.stdout.write(stats.toString({
+        //   colors: true,
+        //   modules: false,
+        //   children: false,
+        //   chunks: false,
+        //   chunkModules: false
+        // }) + '\n\n')
 
         if (stats.hasErrors()) {
           console.log(chalk.red('  Build failed with errors.\n'))
@@ -39,4 +39,7 @@ function buildClient () {
     })
   })
 }
-export default buildClient
+export default {
+  name: 'build client',
+  func: buildClient
+}
