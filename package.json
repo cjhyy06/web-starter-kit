@@ -9,12 +9,13 @@
     "build:client": "cross-env NODE_ENV=production babel-node ./tools/run build-client",
     "watch": "webpack --watch",
     "start": "cross-env NODE_ENV=development babel-node ./tools/run start",
-    "server": "babel-node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "babel-node src/server.js",
+    "test": "babel-node test.js",
     "eslint": "eslint --ext .js,.vue src/",
     "eslint-fix": "eslint --ext .js,.vue src/ --fix"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.3"
   },
   "devDependencies": {
@@ -24,9 +25,13 @@
     "babel-eslint": "^8.2.1",
     "babel-loader": "^7.1.2",
     "babel-plugin-component": "^1.1.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
     "bootstrap-sass": "^3.3.7",
+    "browser-sync": "^2.23.6",
+    "browser-sync-webpack-plugin": "^2.2.2",
     "chalk": "^2.3.2",
     "clean-webpack-plugin": "^0.1.17",
     "compression-webpack-plugin": "^1.1.11",
@@ -53,6 +58,7 @@
     "postcss-loader": "^2.1.0",
     "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
+    "shelljs": "^0.8.1",
     "standard": "^11.0.1",
     "style-loader": "^0.19.1",
     "uglifyjs-webpack-plugin": "^1.2.3",

@@ -1,11 +1,13 @@
 module.exports = {
   parser: "babel-eslint",
   parserOptions: {
-    sourceType: "module"
+    sourceType: "module",
+    ecmaVersion: 8
   },
   env: {
     browser: true,
-    node: true
+    node: true,
+    es6: true
   },
   extends: "semistandard",
   plugins: ["html"],

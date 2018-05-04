@@ -5,9 +5,11 @@ module.exports = {
     assetsPublicPath: '/',
     cssSourceMap: false,
     cacheBusting: true,
-    devtool: 'eval-source-map'
+    devtool: 'eval-source-map',
+    webpackContextPath: path.resolve('./src')
   },
   build: {
+    webpackContextPath: path.resolve('./src'),
     index: path.resolve(__dirname, '../../dist/index.html'),
     productionSourceMap: true,
     assetsRoot: path.resolve(__dirname, '../../dist'),

@@ -1,4 +1,4 @@
-import webpack from 'webpack'
+// import webpack from 'webpack'
 import config from '../config'
 
 let externals = _externals()
@@ -10,7 +10,8 @@ module.exports = {
   target: 'node',
   output: {
     path: config.build.assetsRoot,
-    filename: '[name].[hash:8].js'
+    filename: '[name].[hash:8].js',
+    libraryTarget: 'commonjs2'
   },
   resolve: {
     extensions: ['js']
@@ -35,7 +36,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin()
+    // new webpack.optimize.UglifyJsPlugin()
   ]
 }
 

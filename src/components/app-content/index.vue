@@ -1,7 +1,7 @@
 <template>
   <div class="row content-container">
     <div class="content">
-      content
+
     </div>
 
   </div>

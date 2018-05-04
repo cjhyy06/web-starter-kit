@@ -1,10 +1,11 @@
-// const path = require('path')
 import webpack from 'webpack'
+import config from '../config'
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
+  context: config.dev.webpackContextPath,
   target: 'web',
   entry: {
-    app: ['./src/client.js', 'webpack-hot-middleware/client?noInfo=true&reload=true']
+    app: ['./client.js', 'webpack-hot-middleware/client?noInfo=true&reload=true']
   },
   devtool: 'inline-source-map',
   resolveLoader: {
@@ -13,7 +14,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'src/index.html',
+      template: './index.html',
       inject: true
     }),
     new webpack.HotModuleReplacementPlugin(),
