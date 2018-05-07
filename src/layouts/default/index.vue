@@ -3,7 +3,6 @@
     <app-header></app-header>
     <app-slide></app-slide>
     <app-content>
-      <router-view></router-view>
     </app-content>
     <app-footer></app-footer>
   </div>

@@ -1,10 +1,11 @@
-import buildClient from './build-client'
-import buildServer from './build-server'
+import client from './build-client'
+import server from './build-server'
+
 async function build () {
-  await buildClient()
-  await buildServer()
-  console.log('both client and server build completed')
+  await client.func()
+  await server.func()
 }
+
 export default {
   name: 'build',
   func: build

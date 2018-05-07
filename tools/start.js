@@ -21,7 +21,7 @@ async function start () {
 
   let hotMiddleware = webpackHotMiddleware(compiler, {})
   let server = null
-  let startServer = async () => {
+  let startServer = () => {
     if (server) {
       server.kill()
     }
@@ -38,19 +38,30 @@ async function start () {
       console.log(data.toString())
     })
   }
-  let bs = null
-  let startClient = () => {
-    if (bs != null) return
-    bs = browserSync.create()
-    bs.init(
-      {
-        port: '1000',
-        proxy: {
-          target: `0.0.0.0:8000`,
-          middleware: [devMiddleware, hotMiddleware]
+  let handleServerBundleCompelted = () => {
+    startServer()
+    setTimeout(() => {
+      let bs = browserSync.create()
+      bs.init(
+        {
+          port: '1000',
+          proxy: {
+            target: `0.0.0.0:8000`,
+            middleware: [
+              require('connect-history-api-fallback')({
+                verbose: false,
+                rewrites: []
+              }),
+              devMiddleware,
+              hotMiddleware
+            ],
+            proxyOptions: {
+              xfwd: true
+            }
+          }
         }
-      }
-    )
+      )
+    }, 1000)
   }
 
   serverCompiler.watch({
@@ -61,8 +72,7 @@ async function start () {
     if (err) {
       console.log(err)
     }
-    await startServer()
-    startClient()
+    handleServerBundleCompelted()
   })
 }
 

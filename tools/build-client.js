@@ -1,39 +1,36 @@
 import webpack from 'webpack'
 import webpackClientConfig from './webpack/client.build'
-process.env.NODE_ENV = 'production'
-// const ora = require('ora')
-const rm = require('rimraf')
-// const path = require('path')
-const chalk = require('chalk')
-const config = require('./config')
+import ora from 'ora'
+import rm from 'rimraf'
+import config from './config'
 
-// const spinner = ora('building for client...')
-// spinner.start()
+const spinner = ora('building for client...')
+
+process.env.NODE_ENV = 'production'
+
+spinner.start()
 function buildClient () {
   return new Promise((resolve, reject) => {
     rm(config.build.assetsRoot, err => {
       if (err) throw err
       webpack(webpackClientConfig, (err, stats) => {
-        // spinner.stop()
-        if (err) throw err
-        // process.stdout.write(stats.toString({
-        //   colors: true,
-        //   modules: false,
-        //   children: false,
-        //   chunks: false,
-        //   chunkModules: false
-        // }) + '\n\n')
+        if (err) {
+          spinner.fail()
+          throw err
+        }
+        process.stdout.write(stats.toString({
+          colors: true,
+          modules: false,
+          children: false,
+          chunks: false,
+          chunkModules: false
+        }) + '\n\n')
 
         if (stats.hasErrors()) {
-          console.log(chalk.red('  Build failed with errors.\n'))
+          spinner.fail()
           process.exit(1)
         }
-
-        console.log(chalk.cyan('  Build complete.\n'))
-        console.log(chalk.yellow(
-          '  Tip: built files are meant to be served over an HTTP server.\n' +
-          '  Opening index.html over file:// won\'t work.\n'
-        ))
+        spinner.succeed()
         resolve(stats)
       })
     })

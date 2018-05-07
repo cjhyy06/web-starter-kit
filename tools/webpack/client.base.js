@@ -8,10 +8,7 @@ function resolve (dir) {
 }
 
 module.exports = {
-  context: path.resolve(__dirname, '../'),
-  entry: {
-    app: '../src/client.js'
-  },
+  context: path.resolve('./src'),
   output: {
     path: config.build.assetsRoot,
     filename: '[name].[hash:8].js',
@@ -26,7 +23,13 @@ module.exports = {
       '@': resolve('src')
     }
   },
+  resolveLoader: {
+    modules: ['node_modules']
+  },
   module: {
+    noParse: function (content) {
+      return /jquery|lodash/.test(content)
+    },
     rules: [
       {
         test: /\.vue$/,
@@ -36,6 +39,10 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
+        options: {
+          cacheDirectory: './.cache/babel-loader',
+          compact: false
+        },
         include: [resolve('src')]
       },
       {

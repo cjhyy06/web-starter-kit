@@ -1,5 +1,5 @@
 function run (task, options) {
-  task.default.func('hello')
+  task.func('hello')
 }
 if (require.main === module && process.argv.length > 2) {
   let task = require(`./${process.argv[2]}.js`)

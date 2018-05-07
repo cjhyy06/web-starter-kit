@@ -1,6 +1,6 @@
 // import test from '../../layouts/default'
 export default
 {
-  path: 'test',
-  component: () => import('./default/index')
+  path: 'tt',
+  component: () => import('./default/index.vue')
 }
