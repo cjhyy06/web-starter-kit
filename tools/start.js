@@ -9,6 +9,7 @@ import config from './config'
 // import shell from 'shelljs'
 
 import webpackServerConfig from './webpack/server.dev'
+// import { resolve } from 'path'
 
 async function start () {
   const serverCompiler = webpack(webpackServerConfig)
@@ -21,47 +22,61 @@ async function start () {
 
   let hotMiddleware = webpackHotMiddleware(compiler, {})
   let server = null
-  let startServer = () => {
-    if (server) {
-      server.kill()
+  const runningRegExp = /Listening at http:\/\/(.*?)\//
+  const onStdOut = (data) => {
+    const time = new Date().toTimeString()
+    const match = data.toString('utf8').match(runningRegExp)
+
+    process.stdout.write(time.replace(/.*(\d{2}:\d{2}:\d{2}).*/, '[$1] '))
+    process.stdout.write(data)
+    if (match) {
+      server.host = match[1]
+      server.stdout.removeListener('data', onStdOut)
+      server.stdout.on('data', x => process.stdout.write(x))
     }
-    console.log('begin start server')
-    server = cp.spawn('node', ['server'], {
-      cwd: config.build.assetsRoot
-    })
+  }
+  let startServer = () => {
+    return new Promise((resolve, reject) => {
+      if (server) {
+        server.kill('SIGTERM')
+      }
+      server = cp.spawn('node', ['server'], {
+        cwd: config.build.assetsRoot
+      })
 
-    server.stdout.on('data', function (chunk) {
-      console.log(chunk.toString())
-    })
+      server.stdout.on('data', onStdOut)
 
-    server.stderr.on('data', function (data) {
-      console.log(data.toString())
+      server.stderr.on('data', x => process.stderr.write(x))
     })
   }
   let handleServerBundleCompelted = () => {
     startServer()
-    setTimeout(() => {
-      let bs = browserSync.create()
-      bs.init(
-        {
-          port: '1000',
-          proxy: {
-            target: `0.0.0.0:8000`,
-            middleware: [
-              require('connect-history-api-fallback')({
-                verbose: false,
-                rewrites: []
-              }),
-              devMiddleware,
-              hotMiddleware
-            ],
-            proxyOptions: {
-              xfwd: true
-            }
+    let bs = browserSync.create()
+    bs.init(
+      {
+        port: '1000',
+        proxy: {
+          target: `0.0.0.0:8000`,
+          middleware: [
+            require('connect-history-api-fallback')({
+              verbose: false,
+              rewrites: []
+            }),
+            devMiddleware,
+            hotMiddleware
+          ],
+          proxyOptions: {
+            xfwd: true
           }
         }
-      )
-    }, 1000)
+      }
+    )
+    handleServerBundleCompelted = () => {
+      startServer()
+      setTimeout(() => {
+        bs.reload()
+      }, 1000)
+    }
   }
 
   serverCompiler.watch({
@@ -73,6 +88,12 @@ async function start () {
       console.log(err)
     }
     handleServerBundleCompelted()
+  })
+
+  process.on('exit', () => {
+    if (server) {
+      server.kill('SIGTERM')
+    }
   })
 }
 

@@ -1,5 +1,10 @@
+import menus from '../../../data/menu'
 export default {
   data () {
-    return {}
+    return {
+      menus: menus
+    }
+  },
+  mounted () {
   }
 }

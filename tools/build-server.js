@@ -13,8 +13,12 @@ let buildServer = async () => {
     .then((stats) => {
       return util.promisify(webpack)(webpackServerConfig)
     })
-    .then(() => {
-      spinner.succeed()
+    .then((stat) => {
+      if (stat.hasErrors()) {
+        process.exit(1)
+      } else {
+        spinner.succeed()
+      }
     })
     .catch(err => {
       spinner.fail()

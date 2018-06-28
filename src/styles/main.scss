@@ -1,1 +1,8 @@
 @import './bootstrap/bootstrap-sass';
+
+$fa-font-path:'~font-awesome/fonts/';
+@import '~font-awesome/scss/font-awesome';
+
+@import '~element-ui/lib/theme-chalk/index.css'
+
+

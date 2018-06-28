@@ -1,4 +1,5 @@
 // Created By Chen Xue Song
 export default {
-  port: '8000'
+  front: '1000',
+  backend: '8000'
 }

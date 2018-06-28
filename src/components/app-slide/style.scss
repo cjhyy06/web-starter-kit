@@ -3,10 +3,13 @@
 .slide-container {
   float: left;
   width: $menu-width;
-  margin-right: -$menu-width;
+  margin-left:-15px;
 
-  .slide-content {
-    background-color: #ddd;
+  .menu {
     min-height: $page-content-min-height;
+    a {
+      color:#fff;
+      text-decoration:none;
+    }
   }
 }

@@ -17,7 +17,7 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['js']
+    extensions: ['.js']
   },
   externals: externals,
   node: {

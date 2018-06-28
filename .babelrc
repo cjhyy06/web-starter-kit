@@ -5,6 +5,7 @@
     ],
     "plugins": [
         "add-module-exports",
-        "syntax-dynamic-import"
+        "syntax-dynamic-import",
+        "dynamic-import-node"
     ]
 }

@@ -1,13 +1,10 @@
-import defaultLayout from '../layouts/default'
-import test from './test'
+import defaultLayout from '../layouts/authorised'
+import example from './example/index'
 const routes = [
   {
     path: '/',
-    component: defaultLayout,
-    children: [
-      test
-    ]
-  }
+    component: defaultLayout
+  },
+  example
 ]
-console.log(routes)
 export default routes
