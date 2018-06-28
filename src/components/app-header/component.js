@@ -1,11 +1,8 @@
-
 export default {
   data () {
     return {
-      header: ''
+      header: 'cxs'
     }
   },
-  mounted () {
-
-  }
+  mounted () {}
 }

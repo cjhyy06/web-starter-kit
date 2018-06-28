@@ -1,4 +1,4 @@
-import exampleService from '../../../service/example';
+import exampleService from '../../../service/example'
 export default {
   data () {
     return { example: '' }

@@ -1,4 +1,7 @@
+@import '../../styles/common';
 .header {
   height: 60px;
-  background-color: #1f363d;
+  line-height: 60px;
+  background-color: $header-color;
+  color: $header-font-color;
 }

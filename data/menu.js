@@ -15,12 +15,12 @@ let menus = [
         icon: ''
       },
       {
-        name: 'button',
-        path: '/example/button',
+        name: 'radio',
+        path: '/example/radio',
         icon: ''
       },
       {
-        name: 'button',
+        name: 'other',
         path: '/example/button',
         icon: ''
       }

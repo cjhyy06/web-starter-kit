@@ -2,17 +2,18 @@
 $menu-width: 201px;
 $page-content-min-height: 894px;
 
-// 颜色
-$color-list:(
-  #e63046,
-  #1f363d,
-  #a3d4ad,
-  #ebebeb,
-  #97d2fb
-);
+$menu-color: #1f363d;
+$menu-hover-color: #0c242b;
+$header-color: #0b3644;
+$menu-font-color: #fff;
+$header-font-color: #fff;
+$menu-active-color: #e6a23c;
 
-$color-red:#e63046; 
-$colo-black:#1f363d; 
-$color-green:#a3d4ad; 
-$color-gray:#ebebeb; 
-$color-blue:#97d2fb; 
+// 颜色
+$color-list: (#e63046, #1f363d, #a3d4ad, #ebebeb, #97d2fb);
+
+$color-red: #e63046;
+$colo-black: #1f363d;
+$color-green: #a3d4ad;
+$color-gray: #ebebeb;
+$color-blue: #97d2fb;

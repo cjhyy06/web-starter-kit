@@ -5,6 +5,10 @@ export default {
       menus: menus
     }
   },
-  mounted () {
+  mounted () {},
+  methods: {
+    selectMenu (item) {
+      this.$router.push({ path: item.path })
+    }
   }
 }

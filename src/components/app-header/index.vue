@@ -1,11 +1,11 @@
 <template>
   <div class="row header">
-    <div>{{header}}</div>
+    <div class="col-xs-12">
+      <div>{{header}}</div>
+    </div>
   </div>
 </template>
 <script src="./component.js">
 </script>
-
-<style scoped lang="scss" src="./style.scss">
-
+<style lang="scss" scoped src="./style.scss">
 </style>
