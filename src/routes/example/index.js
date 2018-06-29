@@ -22,6 +22,12 @@ export default {
       path: 'webscoket',
       component: () => import('./webscoket'),
       meta: { pageTitle: 'webscoket', pageSubTitle: '' }
+    },
+    {
+      name: 'request',
+      path: 'request',
+      component: () => import('./request'),
+      meta: { pageTitle: 'request', pageSubTitle: '' }
     }
   ]
 }

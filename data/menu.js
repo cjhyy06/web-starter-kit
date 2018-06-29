@@ -25,6 +25,11 @@ let menus = [
         icon: ''
       },
       {
+        name: 'request',
+        path: '/example/request',
+        icon: ''
+      },
+      {
         name: 'other',
         path: '/example/button',
         icon: ''
