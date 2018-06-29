@@ -23,7 +23,7 @@ async function start () {
   let hotMiddleware = webpackHotMiddleware(compiler, {})
   let server = null
   const runningRegExp = /Listening at http:\/\/(.*?)\//
-  const onStdOut = (data) => {
+  const onStdOut = data => {
     const time = new Date().toTimeString()
     const match = data.toString('utf8').match(runningRegExp)
 
@@ -52,25 +52,27 @@ async function start () {
   let handleServerBundleCompelted = () => {
     startServer()
     let bs = browserSync.create()
-    bs.init(
-      {
-        port: '1000',
-        proxy: {
-          target: `0.0.0.0:8000`,
-          middleware: [
-            require('connect-history-api-fallback')({
-              verbose: false,
-              rewrites: []
-            }),
-            devMiddleware,
-            hotMiddleware
-          ],
-          proxyOptions: {
-            xfwd: true
-          }
+    bs.init({
+      port: '1000',
+      proxy: {
+        target: `0.0.0.0:8000`,
+        middleware: [
+          require('connect-history-api-fallback')({
+            verbose: false,
+            rewrites: []
+          }),
+          devMiddleware,
+          hotMiddleware
+        ],
+        proxyOptions: {
+          xfwd: true
         }
       }
-    )
+      // socket: {
+      //   namespace: '/bs',
+      //   domain: '0.0.0.0:1000'
+      // }
+    })
     handleServerBundleCompelted = () => {
       startServer()
       setTimeout(() => {
@@ -79,16 +81,19 @@ async function start () {
     }
   }
 
-  serverCompiler.watch({
-    aggregateTimeout: 300,
-    poll: 2000,
-    ignored: ['node_modules']
-  }, async (err, stats) => {
-    if (err) {
-      console.log(err)
+  serverCompiler.watch(
+    {
+      aggregateTimeout: 300,
+      poll: 2000,
+      ignored: ['node_modules']
+    },
+    async (err, stats) => {
+      if (err) {
+        console.log(err)
+      }
+      handleServerBundleCompelted()
     }
-    handleServerBundleCompelted()
-  })
+  )
 
   process.on('exit', () => {
     if (server) {

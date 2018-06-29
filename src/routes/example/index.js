@@ -16,6 +16,12 @@ export default {
       path: 'radio',
       component: () => import('./radio'),
       meta: { pageTitle: 'radio', pageSubTitle: '' }
+    },
+    {
+      name: 'webscoket',
+      path: 'webscoket',
+      component: () => import('./webscoket'),
+      meta: { pageTitle: 'webscoket', pageSubTitle: '' }
     }
   ]
 }

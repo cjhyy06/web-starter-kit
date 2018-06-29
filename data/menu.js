@@ -20,6 +20,11 @@ let menus = [
         icon: ''
       },
       {
+        name: 'webscoket',
+        path: '/example/webscoket',
+        icon: ''
+      },
+      {
         name: 'other',
         path: '/example/button',
         icon: ''
