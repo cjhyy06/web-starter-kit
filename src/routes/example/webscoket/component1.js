@@ -18,7 +18,20 @@ export default {
     })
   },
   methods: {
-    send1 () {},
+    send1 () {
+      socket1.emit(
+        'sendMessage1',
+        {
+          user: 'user1',
+          message: this.toSendMsg1
+        },
+        data => {
+          console.log(data)
+          this.message1 += data.receivedData.message + '\n'
+        }
+      )
+      this.toSendMsg1 = ''
+    },
     send2 () {},
     send3 () {}
   }
