@@ -189,7 +189,6 @@ let initChart = () => {
       // return radius(d.value / 2)
       return radius(60)
     })
-    // .attr('class', 'nodes-normal')
     .style('stroke', '#349bef')
     .attr('fill', function (d) {
       return '#5fabf1'
