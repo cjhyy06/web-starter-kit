@@ -10,6 +10,11 @@ let menus = [
     icon: 'fa fa-clipboard',
     children: [
       {
+        name: 'vue tips',
+        path: '/example/vue-tips',
+        icon: ''
+      },
+      {
         name: 'button',
         path: '/example/button',
         icon: ''
@@ -32,6 +37,16 @@ let menus = [
       {
         name: 'other',
         path: '/example/button',
+        icon: ''
+      },
+      {
+        name: 'dialog',
+        path: '/example/dialog',
+        icon: ''
+      },
+      {
+        name: 'd3',
+        path: '/example/d3/force',
         icon: ''
       }
     ]
