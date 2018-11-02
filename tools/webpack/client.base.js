@@ -10,16 +10,17 @@ function resolve (dir) {
 module.exports = {
   context: path.resolve('./src'),
   output: {
-    path: config.build.assetsRoot,
+    path: config.build.assetsRoot + '/public',
     filename: '[name].[hash:8].js',
-    publicPath: process.env.NODE_ENV === 'production'
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+    publicPath:
+      process.env.NODE_ENV === 'production'
+        ? config.build.assetsPublicPath
+        : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
+      vue$: 'vue/dist/vue.esm.js',
       '@': resolve('src')
     }
   },
@@ -38,11 +39,22 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        options: {
-          cacheDirectory: './.cache/babel-loader',
-          compact: false
-        },
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              // limit: 10000,
+              name: utils.assetsPath('js/[name].[hash:7].[ext]')
+            }
+          },
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: './.cache/babel-loader',
+              compact: false
+            }
+          }
+        ],
         include: [resolve('src')]
       },
       {

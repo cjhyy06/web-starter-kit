@@ -1,3 +1,6 @@
+@import '../../styles/common';
+
 .footer {
-  background-color: #ddd;
+  background-color: $footer-color;
+  height: 40px;
 }

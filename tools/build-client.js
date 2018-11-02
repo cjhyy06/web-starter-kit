@@ -14,17 +14,20 @@ function buildClient () {
     rm(config.build.assetsRoot, err => {
       if (err) throw err
       webpack(webpackClientConfig, (err, stats) => {
+        console.log(err, stats, 1)
         if (err) {
           spinner.fail()
           throw err
         }
-        process.stdout.write(stats.toString({
-          colors: true,
-          modules: false,
-          children: false,
-          chunks: false,
-          chunkModules: false
-        }) + '\n\n')
+        process.stdout.write(
+          stats.toString({
+            colors: true,
+            modules: false,
+            children: false,
+            chunks: false,
+            chunkModules: false
+          }) + '\n\n'
+        )
 
         if (stats.hasErrors()) {
           spinner.fail()

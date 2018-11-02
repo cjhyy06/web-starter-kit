@@ -9,14 +9,13 @@ export default {
     'app-footer': appFooter
   },
   mounted () {
-    let slideEl = $('.slide-content')
+    let windowHeight = $(window).innerHeight()
+    let headerHeight = 60
+    let footerHeight = 40
+    let contentHeight = windowHeight - headerHeight - footerHeight
+    let slideEl = $('.slide-container')
     let mainContentEl = $('.content')
-    let mainContentHeight = mainContentEl.height()
-    let slideHeight = slideEl.height()
-    if (slideHeight < mainContentHeight) {
-      slideEl.height(mainContentHeight)
-    } else if (slideHeight > mainContentHeight) {
-      mainContentEl.height(slideHeight)
-    }
+    slideEl.css('height', contentHeight)
+    mainContentEl.css('height', contentHeight)
   }
 }

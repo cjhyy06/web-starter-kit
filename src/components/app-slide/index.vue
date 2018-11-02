@@ -1,5 +1,5 @@
 <template>
-  <div class="slide-container">
+  <div class="slide-container" ref="navMenu">
     <!-- <el-menu class="menu" background-color="#1f363d" text-color="#fff" active-text-color="#ffd04b" mode="vertical"> -->
     <el-menu class="app-slide-el-menu" mode="vertical">
       <template v-for="(item,index) in menus">
@@ -21,30 +21,30 @@
 <style lang="scss">
 @import '../../styles/common';
 .app-slide-el-menu {
-  min-height: $page-content-min-height;
   a {
     color: #fff;
     text-decoration: none;
   }
-  background-color: $menu-color;
+  background-color: $menu-color !important;
+  height: 100%;
   .el-menu-item {
-    color: $menu-font-color;
-    background-color: $menu-color;
+    color: $menu-font-color !important;
+    background-color: $menu-color !important;
   }
   .el-menu-item:focus,
   .el-menu-item:hover {
     outline: 0;
-    background-color: $menu-hover-color;
+    background-color: $menu-hover-color !important;
   }
   .el-menu-item.is-active {
-    color: $menu-active-color;
+    color: $menu-active-color !important;
   }
   .el-submenu {
     .el-submenu__title {
-      color: $menu-font-color;
+      color: $menu-font-color !important;
     }
     .el-submenu__title:hover {
-      background-color: $menu-hover-color;
+      background-color: $menu-hover-color !important;
     }
   }
 }
